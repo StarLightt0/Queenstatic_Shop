@@ -71,9 +71,9 @@
                     @endif
 
                 </div>
-               
-                
-            <nav class="mt-6 flex flex-col gap-2 px-4">
+
+
+                <nav class="mt-6 flex flex-col gap-2 px-4">
                     <a href="/dashboard"
                         class="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-200 transition">
                         <span>🏠</span> Dashboard
@@ -248,7 +248,7 @@
                         class="px-5 py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition">OK</button>
                 </div>
             </div>
-            
+
         </main>
     </div>
 
@@ -258,7 +258,7 @@
                 {
                 id: {{ $b->id_barang }},
                 nama: {!! json_encode($b->nama_barang) !!},
-                harga: {{ (int) $b->harga }}, 
+                harga: {{ (int) $b->harga }},
                 stok: {{ (int) $b->stok }}
                 },
             @endforeach
@@ -295,7 +295,9 @@
         <td class="py-3 px-4 text-center align-middle">
             <input type="number" name="qty[]" min="1" value="1"
                 class="w-20 text-center border border-gray-300 rounded px-2 py-1"
-                oninput="updateSubtotal(this)">
+                oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateSubtotal(this)"
+                onkeypress="return event.key.match(/[0-9]/);"
+                onpaste="return false;">
         </td>
 
         <td class="py-3 px-4 text-right align-middle">

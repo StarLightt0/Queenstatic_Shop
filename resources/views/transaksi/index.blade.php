@@ -161,13 +161,13 @@
             </script>
         @endif
 
-        <div class="flex justify-between items-center mb-8 flex-wrap gap-4">
+        <div class="flex flex-col lg:flex-row justify-between items-center mb-8 gap-4">
             <a href="{{ route('transaksi.create') }}"
-                class="bg-black text-white px-6 py-3 rounded-lg shadow hover:bg-gray-800 transition font-semibold">
+                class="bg-black text-white w-[200px] py-2 rounded-lg shadow hover:bg-gray-800 transition font-semibold text-center">
                 + Buat Transaksi
             </a>
 
-            <form action="{{ route('transaksi.index') }}" method="GET" class="flex items-center gap-3 w-full sm:w-auto">
+            <form action="{{ route('transaksi.index') }}" method="GET" class="flex items-center gap-3 w-full lg:w-full">
                 <label for="tanggal" class="font-medium"></label>
                 <input type="date" name="tanggal" id="tanggal" value="{{ request('tanggal') }}"
                     class="flex-1 min-w-[200px] sm:min-w-[250px] lg:min-w-[910px] border border-gray-400 rounded-lg px-3 py-2 focus:ring-2 focus:ring-black outline-none">
