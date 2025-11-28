@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BarangController;
@@ -9,15 +10,13 @@ use App\Http\Controllers\TransaksiController;
 
 
 //login
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [AuthController::class, 'login']);
+Route::get('/', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/', [AuthController::class, 'login']);
 
 //dashboard
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth');
-
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/dashboard', [DashboardController::class, 'index'])
+    ->middleware('auth')
+    ->name('dashboard');
 
 //barang
 Route::middleware('auth')->group(function () {
@@ -46,6 +45,6 @@ Route::post('/logout', function () {
     Auth::logout();
     request()->session()->invalidate();
     request()->session()->regenerateToken();
-    return redirect('/login');
+    return redirect('/');
 })->name('logout');
 
