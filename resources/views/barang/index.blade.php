@@ -187,7 +187,7 @@
                         </thead>
                         <tbody>
                             @forelse ($barangs as $barang)
-                                <tr class="border-t border-gray-300 hover:bg-gray-100">
+                                <tr class="border-t border-gray-300 hover:bg-gray-100 transition transform hover:scale-[1.02]">
                                     <td class="py-2 px-3 text-center">{{ $loop->iteration }}</td>
                                     <td class="py-2 px-3">{{ $barang->nama_barang }}</td>
                                     <td class="py-2 px-3">{{ $barang->merek->nama_merek ?? '-' }}</td>

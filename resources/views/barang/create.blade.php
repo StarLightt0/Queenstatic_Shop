@@ -12,51 +12,50 @@
 </head>
 
 <style>
-        @keyframes fadeSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(50px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeSlideRight {
-            from {
-                opacity: 0;
-                transform: translateX(-100px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-    
-        .hidden-before-anim {
+    @keyframes fadeSlideUp {
+        from {
             opacity: 0;
+            transform: translateY(50px);
         }
 
-        .animate-fadeSlideUp {
-            animation: fadeSlideUp 1s ease forwards;
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeSlideRight {
+        from {
+            opacity: 0;
+            transform: translateX(-100px);
         }
 
-        .animate-fadeSlideRight {
-            animation: fadeSlideRight 1s ease forwards;
+        to {
+            opacity: 1;
+            transform: translateX(0);
         }
+    }
 
-        
-    </style>
+
+    .hidden-before-anim {
+        opacity: 0;
+    }
+
+    .animate-fadeSlideUp {
+        animation: fadeSlideUp 1s ease forwards;
+    }
+
+    .animate-fadeSlideRight {
+        animation: fadeSlideRight 1s ease forwards;
+    }
+</style>
 
 <body class="bg-gray-100 text-black min-h-screen animate-fadeSlideRight">
 
     <div class="flex min-h-screen">
         <!-- sidebar -->
-        <aside class="w-64 bg-white border-r border-gray-300 flex flex-col justify-between shadow-md animate-fadeSlideRight">
+        <aside
+            class="w-64 bg-white border-r border-gray-300 flex flex-col justify-between shadow-md animate-fadeSlideRight">
             <div>
                 <div class="p-10 border-b border-gray-300">
                     <h1 class="text-2xl font-bold tracking-wide mb-2">QueenStatic Shop</h1>
@@ -129,7 +128,8 @@
 
         <!-- main content -->
         <main class="flex-1 p-10">
-            <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-300 animate-fadeSlideUp">
+            <div
+                class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-300 animate-fadeSlideUp">
                 <h1 class="text-3xl font-bold mb-6 text-center">Tambah Barang</h1>
 
                 @if ($errors->any())
@@ -151,7 +151,7 @@
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-gray-400 focus:outline-none"
                             placeholder="Masukkan nama barang" required>
                     </div>
-    
+
                     <div>
                         <label for="id_merek" class="block text-sm font-semibold mb-2">Merek</label>
                         <select id="id_merek" name="id_merek"
@@ -179,7 +179,7 @@
 
                     <div>
                         <label class="block mb-2 font-semibold text-gray-700">Harga</label>
-                        <input type="text" id="harga" name="harga" value="{{ old('harga' , number_format( 0,))  }}"
+                        <input type="text" id="harga" name="harga" value="{{ old('harga', number_format(0, ))  }}"
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:ring-2 focus:ring-gray-400 focus:outline-none"
                             placeholder="Masukkan harga barang" required>
                     </div>
@@ -191,7 +191,7 @@
                             let value = e.target.value.replace(/\D/g, '');
                             e.target.value = new Intl.NumberFormat('id-ID').format(value);
                         });
-                        
+
                         hargaInput.form.addEventListener('submit', function () {
                             hargaInput.value = hargaInput.value.replace(/\./g, '');
                         });
@@ -201,6 +201,9 @@
                         <label for="stok" class="block text-sm font-semibold mb-2">Stok Barang</label>
                         <input type="number" id="stok" name="stok" value="{{ old('stok') }}"
                             class="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-black"
+
+                            oninput="this.value = this.value.replace(/[^0-9]/g, ''); updateSubtotal(this)"
+                            onkeypress="return event.key.match(/[0-9]/);" onpaste="return false;"
                             placeholder="Masukkan jumlah stok..." required>
                     </div>
 
