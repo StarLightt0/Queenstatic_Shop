@@ -35,7 +35,7 @@ class BarangController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'nama_barang' => 'required|string|max:255',
+            'nama_barang' => 'required|string|max:255|unique:barangs,nama_barang',
             'id_merek' => 'nullable|integer|exists:mereks,id_merek',
             'id_kategori' => 'required|integer|exists:kategoris,id_kategori',
             'harga' => 'required|numeric|min:0',
